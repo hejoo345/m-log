@@ -16,3 +16,8 @@
   display: flex;
   flex-direction: column;
 }
+.gotoSignup {
+  position: fixed;
+  top: 0;
+  right: 0;
+}

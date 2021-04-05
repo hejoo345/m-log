@@ -5,21 +5,24 @@ import Login from './components/login/login';
 import Main from './components/main/main';
 import Signup from './components/sign_up/sign_up';
 
-function App() {
+function App({authService}) {
   return (
     <div className={styles.app}>
       <BrowserRouter>
       <Switch>
         <Route path='/' exact>
-          <Login/>
+          <Login
+          authService={authService}/>
         </Route>
 
         <Route path='/signup' exact>
-          <Signup/>
+          <Signup
+          authService={authService}/>
         </Route>
 
         <Route path='/main' exact>
-          <Main/>
+          <Main
+          authService={authService}/>
         </Route>
       </Switch>
       </BrowserRouter>
