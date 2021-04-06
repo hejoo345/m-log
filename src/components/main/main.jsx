@@ -1,34 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
+const {Kakao} = window;
 const Main = ({authService}) => {
     const history = useHistory();
     const historyState = useLocation().state;
     const [userId, setUserId] = useState(historyState&&historyState.id);
-    
-    useEffect(()=>{
-        if(userId){
-            console.log(historyState.id);
-        }else{
-            console.log("없어요");
-        }
-    },[userId])
 
-    const onLogout =()=>{
-        authService.logout();
-    }
 
     useEffect(()=>{
         authService.onAuthChange((user)=>{
             if(user){
-                // console.log(usser);
                 setUserId(user.uid);
-            }else{
+            }else if(Kakao.Auth.getAccessToken()){
+                console.log('카카오로 로그인함');
+                setUserId(Kakao.Auth.getAccessToken());
+            }
+            else{
                 history.push('/');
             }
         })
     },[authService,userId,history])
 
+    useEffect(()=>{
+        if(userId) {console.log(userId);
+        }else return;
+    },[])
+
+    const onLogout =()=>{
+        if(!Kakao.Auth.getAccessToken()){ // 구글 로그인
+            authService.logout();
+        }else{
+            Kakao.Auth.logout(()=>{
+                console.log(Kakao.Auth.getAccessToken());
+                history.push('/');
+            })
+        }
+    }
+    
     return(
         <section>
             <nav>

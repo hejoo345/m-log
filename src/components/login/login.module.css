@@ -6,7 +6,7 @@
   align-items: center;
 }
 .container {
-  width: 30em;
+  width: 30rem;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -15,9 +15,77 @@
 .login {
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid lightgray;
 }
 .gotoSignup {
+  font-size: 0.9rem;
+  width: 6em;
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 1em;
+  right: 1em;
+  border-radius: 20px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 0.5em 1em;
+  font-weight: 600;
+}
+.gotoSignupLink {
+  text-decoration: none;
+  color: black;
+}
+.email,
+.pw {
+  width: 20rem;
+  height: 3em;
+  font-size: 1rem;
+  border: none;
+  margin: 0.5em;
+}
+input:focus {
+  outline: none;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+}
+.loginBtn {
+  border-radius: 20px;
+  border-style: none;
+  background-color: #fecd52;
+  font-size: 1rem;
+  padding: 0.5em;
+  cursor: pointer;
+  padding: 0.8em 0;
+  margin-bottom: 2rem;
+}
+.loginBtn:focus {
+  outline: none;
+}
+.noticeDiv {
+  margin: 0.5em 0;
+  padding-left: 0.1em;
+}
+.notice {
+  font-size: 1rem;
+  color: #fb0047;
+}
+.socialBtn {
+  width: 7em;
+  padding: 1rem 0;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+}
+.googleBtn {
+  border-radius: 50%;
+  padding: 0.5em;
+  border-style: none;
+}
+.kakaoBtn {
+  border-radius: 50%;
+  padding: 0.5em;
+  border-style: none;
+  background-color: #fee500;
 }
