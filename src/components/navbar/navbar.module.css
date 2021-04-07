@@ -1,0 +1,62 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  align-items: center;
+}
+.leftNav {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.leftNav li {
+  cursor: pointer;
+}
+.home,
+.search {
+  margin-right: 1em;
+}
+.rightNav {
+  display: flex;
+  align-items: center;
+}
+.search {
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 0.3em;
+  display: flex;
+  align-items: center;
+}
+.searchInput {
+  border: none;
+  font-size: 1rem;
+}
+.user {
+  cursor: pointer;
+}
+.userOption {
+  font-size: 1rem;
+  font-weight: 500;
+  list-style: none;
+  position: absolute;
+  top: 3rem;
+  right: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  width: 10em;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+.userOption.active {
+  opacity: 1;
+  visibility: visible;
+}
+.userOption li {
+  padding: 0.9em 1em;
+}
+.userOption li:hover {
+  background-color: #ebebeb;
+}

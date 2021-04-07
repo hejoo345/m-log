@@ -7,7 +7,7 @@
 }
 .container {
   width: 30rem;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,9 +29,15 @@
   padding: 0.5em 1em;
   font-weight: 600;
 }
+.gotoSignup:focus {
+  outline: none;
+}
 .gotoSignupLink {
   text-decoration: none;
   color: black;
+}
+.emailDiv {
+  border-bottom: 1px solid lightgray;
 }
 .email,
 .pw {
@@ -78,14 +84,17 @@ input:focus {
   list-style: none;
   justify-content: space-between;
 }
-.googleBtn {
-  border-radius: 50%;
-  padding: 0.5em;
-  border-style: none;
-}
+.googleBtn,
 .kakaoBtn {
   border-radius: 50%;
   padding: 0.5em;
   border-style: none;
+  cursor: pointer;
+}
+.googleBtn:focus,
+.kakaoBtn:focus {
+  outline: none;
+}
+.kakaoBtn {
   background-color: #fee500;
 }

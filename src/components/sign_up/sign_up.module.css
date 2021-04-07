@@ -6,18 +6,72 @@
   align-items: center;
 }
 .gotoLogin {
+  font-size: 0.9rem;
+  width: 6em;
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 1em;
+  right: 1em;
+  border-radius: 20px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 0.5em 1em;
+  font-weight: 600;
+}
+.gotoLogin:focus {
+  outline: none;
+}
+.gotoLoginLink {
+  text-decoration: none;
+  color: black;
 }
 .container {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 30em;
   align-items: center;
 }
 .signup {
   display: flex;
   flex-direction: column;
+}
+.emailDiv,
+.pwDiv {
+  border-bottom: 1px solid lightgray;
+}
+.email,
+.pw,
+.pwCk {
+  width: 20rem;
+  height: 3em;
+  font-size: 1rem;
+  border: none;
+  margin: 0.5em;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+}
+.noticeDiv {
+  margin: 0.5em 0;
+  padding-left: 0.1em;
+}
+.notice {
+  font-size: 1rem;
+  color: #fb0047;
+}
+.signUpBtn {
+  border-radius: 20px;
+  border-style: none;
+  background-color: #fecd52;
+  font-size: 1rem;
+  padding: 0.5em;
+  cursor: pointer;
+  padding: 0.8em 0;
+  margin-bottom: 2rem;
+}
+.signUpBtn:focus {
+  outline: none;
 }

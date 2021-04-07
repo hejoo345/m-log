@@ -18,6 +18,16 @@ const Login = ({authService}) => {
         console.log(Kakao.isInitialized());
     },[])
 
+    useEffect(()=>{
+        authService.onAuthChange(user=>{
+            if(user){
+                gotoMain(user.uid);
+            }else if(Kakao.Auth.getAccessToken()){
+                gotoMain(Kakao.Auth.getAccessToken());
+            }
+        })
+    })
+
     const gotoMain = (userId) =>{
         history.push({
             pathname: '/main',
@@ -48,7 +58,7 @@ const Login = ({authService}) => {
                 gotoMain(data.user.uid);
             })
             .catch((err)=>{
-                setNotice("이메일이나 비밀번호의 형식이 올바르지 않습니다.");
+                setNotice("이메일이나 비밀번호가 올바르지 않습니다.");
                 console.log(err);
             });
         }
@@ -75,7 +85,7 @@ const Login = ({authService}) => {
                 <h2>로그인</h2>
                 <form className={styles.login}>
                     <div className={styles.input}>
-                        <div >
+                        <div className={styles.emailDiv}>
                             <input className={styles.email} ref={idRef} type="text" placeholder="이메일(example@gmail.com)"></input>
                         </div>
                         <div >

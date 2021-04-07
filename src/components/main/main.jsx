@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import MovieAdd from '../movieAdd/movieAdd';
+import MovieList from '../movieList/movieList';
+import Navbar from '../navbar/navbar';
 
 const {Kakao} = window;
 const Main = ({authService}) => {
@@ -37,13 +40,17 @@ const Main = ({authService}) => {
             })
         }
     }
+
+    const homeAndAddHandler = () =>{
+
+    }
     
     return(
         <section>
-            <nav>
-                <button onClick={onLogout}>로그아웃</button>
-            </nav>
-            <h1>로그인 후 나타나는 메인화면</h1>    
+            <Navbar onLogout={onLogout} 
+            homeAndAddHandler={homeAndAddHandler}/>
+            <MovieList/>
+            <MovieAdd/> 
         </section>
     )};
 
