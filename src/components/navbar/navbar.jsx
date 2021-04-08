@@ -8,18 +8,28 @@ const Navbar = memo(({onLogout,homeAndAddHandler}) => {
 
     const dropdownRef = useRef(null);
     const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef,false);
+    const [homeActive, setHomeActive] = useState(true);
+    const [addActive, setAddActive] = useState(false);
 
     const userMenuHandler = () =>{
         setIsActive(!isActive);
     }
     const leftNavHandler = e =>{
-        console.log(e.currentTarget.textContent);
+        if(e.target.textContent === '홈'){
+            setHomeActive(true);
+            setAddActive(false);
+            homeAndAddHandler('home');
+        }else{
+            setHomeActive(false);
+            setAddActive(true);
+            homeAndAddHandler('add');
+        }
     }
     return(
             <section className={styles.nav}>
-                <ul className={styles.leftNav}>
-                    <li className={styles.home} onClick={leftNavHandler}>홈</li>
-                    <li className={styles.add} onClick={leftNavHandler}>추가하기</li>
+                <ul className={styles.leftNav} onClick={leftNavHandler}>
+                    <li className={`${styles.home} ${homeActive? styles.active:''}`} >홈</li>
+                    <li className={`${styles.add} ${addActive? styles.active:''}`} >추가하기</li>
                 </ul>
                 <div className={styles.rightNav}>
                     <div className={styles.search}>

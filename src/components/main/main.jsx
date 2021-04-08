@@ -9,7 +9,8 @@ const Main = ({authService}) => {
     const history = useHistory();
     const historyState = useLocation().state;
     const [userId, setUserId] = useState(historyState&&historyState.id);
-
+    const [homeActive, setHomeActive] = useState(true);
+    const [addActive, setAddActive] = useState(false);
 
     useEffect(()=>{
         authService.onAuthChange((user)=>{
@@ -41,16 +42,31 @@ const Main = ({authService}) => {
         }
     }
 
-    const homeAndAddHandler = () =>{
-
+    const homeAndAddHandler = (item) =>{
+        console.log(item);
+        if(item === 'home'){
+            setHomeActive(true);
+            setAddActive(false);
+        }else{
+            setHomeActive(false);
+            setAddActive(true);
+        }
     }
     
     return(
         <section>
             <Navbar onLogout={onLogout} 
             homeAndAddHandler={homeAndAddHandler}/>
-            <MovieList/>
-            <MovieAdd/> 
+           {
+               homeActive && (
+                    <MovieList/>    
+               )
+           }
+           {
+               addActive && (
+                    <MovieAdd/> 
+               )
+           }
         </section>
     )};
 
