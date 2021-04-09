@@ -29,7 +29,7 @@ const Navbar = memo(({onLogout,homeAndAddHandler}) => {
             <section className={styles.nav}>
                 <ul className={styles.leftNav} onClick={leftNavHandler}>
                     <li className={`${styles.home} ${homeActive? styles.active:''}`} >홈</li>
-                    <li className={`${styles.add} ${addActive? styles.active:''}`} >추가하기</li>
+                    <li className={`${styles.add} ${addActive? styles.active:''}`} >기록하기</li>
                 </ul>
                 <div className={styles.rightNav}>
                     <div className={styles.search}>

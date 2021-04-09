@@ -3,6 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import MovieAdd from '../movieAdd/movieAdd';
 import MovieList from '../movieList/movieList';
 import Navbar from '../navbar/navbar';
+import styles from './main.module.css';
 
 const {Kakao} = window;
 const Main = ({authService}) => {
@@ -54,7 +55,7 @@ const Main = ({authService}) => {
     }
     
     return(
-        <section>
+        <section className={styles.mainSection}>
             <Navbar onLogout={onLogout} 
             homeAndAddHandler={homeAndAddHandler}/>
            {
