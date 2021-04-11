@@ -8,10 +8,12 @@ import NaverSearch from './service/naver_search';
 const authService = new AuthService();
 const naverSearch = new NaverSearch();
 
+
 ReactDOM.render(
   <React.StrictMode>
     <App
-    authService={authService}/>
+    authService={authService}
+    naverSearch={naverSearch}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

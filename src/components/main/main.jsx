@@ -6,7 +6,7 @@ import Navbar from '../navbar/navbar';
 import styles from './main.module.css';
 
 const {Kakao} = window;
-const Main = ({authService}) => {
+const Main = ({authService, naverSearch}) => {
     const history = useHistory();
     const historyState = useLocation().state;
     const [userId, setUserId] = useState(historyState&&historyState.id);
@@ -65,7 +65,8 @@ const Main = ({authService}) => {
            }
            {
                addActive && (
-                    <MovieAdd/> 
+                    <MovieAdd
+                    naverSearch={naverSearch}/> 
                )
            }
         </section>

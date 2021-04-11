@@ -1,20 +1,30 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './movieAdd.module.css';
 import {AiOutlineSearch} from 'react-icons/ai';
+import MovieSearchList from '../movie_search_list/movie_search_list';
 
-const MovieAdd = (props) => {
+const MovieAdd = ({naverSearch}) => {
     const searchRef = useRef();
+    const [searchList, setSearchList] = useState([]);
     const searchMovie=(e)=>{
         e.preventDefault();
-        console.log(searchRef.current.value);
+        if(searchRef.current.value==='') return;
+
+        naverSearch.movieSearch(searchRef.current.value)
+        .then((movies)=>{
+            setSearchList(Object.assign({},movies) );
+            console.log(movies);
+        })
+        .catch(console.log)
     }
     return(
             <section className={styles.movieAddSection}>
                 <div className={styles.container}>
-                    <div className={styles.movieSearch}>
+                    <form className={styles.movieSearch} onSubmit={searchMovie}>
                         <input ref={searchRef} type="text" placeholder="감상한 영화를 검색"></input>
                         <AiOutlineSearch onClick={searchMovie} size="1.5rem"/>
-                    </div>
+                    </form>
+                    
                     <div className={styles.movie}>
                         <div className={styles.img}>영화 포스터</div>
                         <div className={styles.info}>
@@ -40,8 +50,8 @@ const MovieAdd = (props) => {
                             </div>
                         </div>
                     </div>
-                    
-                    
+                    <MovieSearchList searchList={searchList}/>
+                   
                 </div>
                     
                     
