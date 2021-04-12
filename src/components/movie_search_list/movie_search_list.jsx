@@ -1,17 +1,20 @@
 import React from 'react';
 import MovieSearchItem from './movie_search_item';
+import styles from './movie_search_list.module.css';
 
-const MovieSearchList = ({searchList}) => {
+const MovieSearchList = ({searchList, setMovieHandler}) => {
+ 
     return(
-        <ul>
+        <ul className={styles.list}>
         {
-            Object.keys(searchList).map((key)=>{
+            Object.keys(searchList).map(key=>(
                 <MovieSearchItem
                 key={key}
-                movie={searchList[key]}/>
-            })
+                movie={searchList[key]}
+                setMovieHandler={setMovieHandler}/>
+            ))
         }
-    </ul>
+        </ul>
     )};
 
 export default MovieSearchList;

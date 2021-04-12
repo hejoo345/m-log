@@ -1,0 +1,26 @@
+.item {
+  display: flex;
+  cursor: pointer;
+  border-bottom: 1px solid lightgray;
+}
+.item:hover {
+  background-color: wheat;
+}
+.img {
+  padding: 0.5em;
+}
+.image {
+  width: 5em;
+  height: 7em;
+}
+.info {
+  padding: 0.5em;
+}
+.title {
+  font-weight: 700;
+  margin-bottom: 0.8em;
+}
+p {
+  margin: 0;
+  margin-bottom: 0.2em;
+}

@@ -53,6 +53,7 @@
   padding: 0;
   opacity: 0;
   visibility: hidden;
+  background-color: white;
 }
 .userOption.active {
   opacity: 1;

@@ -10,6 +10,12 @@
   flex-direction: column;
   align-items: center;
 }
+.list {
+  position: absolute;
+  background-color: white;
+  top: 10rem;
+  width: 20em;
+}
 .movie {
   display: flex;
   width: 40em;
@@ -27,7 +33,7 @@
   border: none;
 }
 .movieSearch > input {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 .info {
   display: flex;
