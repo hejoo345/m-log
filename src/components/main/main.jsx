@@ -6,12 +6,13 @@ import Navbar from '../navbar/navbar';
 import styles from './main.module.css';
 
 const {Kakao} = window;
-const Main = ({authService, naverSearch}) => {
+const Main = ({authService, naverSearch, movieRepository}) => {
     const history = useHistory();
     const historyState = useLocation().state;
     const [userId, setUserId] = useState(historyState&&historyState.id);
     const [homeActive, setHomeActive] = useState(true);
     const [addActive, setAddActive] = useState(false);
+    const [movies, setMovies] = useState({});
 
     useEffect(()=>{
         authService.onAuthChange((user)=>{
@@ -53,6 +54,16 @@ const Main = ({authService, naverSearch}) => {
             setAddActive(true);
         }
     }
+
+    const onMovieAdd = (movie)=>{
+        console.log(movie);
+        setMovies((preMovies)=>{
+            const newMovies = {...preMovies};
+            newMovies[movie.id] = movie;
+            return newMovies;
+        });
+        movieRepository.saveMovie(userId, movies);
+    }
     
     return(
         <section className={styles.mainSection}>
@@ -60,13 +71,16 @@ const Main = ({authService, naverSearch}) => {
             homeAndAddHandler={homeAndAddHandler}/>
            {
                homeActive && (
-                    <MovieList/>    
+                    <MovieList 
+                    movieRepository={movieRepository}/>    
                )
            }
            {
                addActive && (
                     <MovieAdd
-                    naverSearch={naverSearch}/> 
+                    naverSearch={naverSearch}
+                    movieRepository={movieRepository}
+                    onMovieAdd={onMovieAdd}/> 
                )
            }
         </section>

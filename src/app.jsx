@@ -5,7 +5,7 @@ import Login from './components/login/login';
 import Main from './components/main/main';
 import Signup from './components/sign_up/sign_up';
 
-function App({authService, naverSearch}) {
+function App({authService, naverSearch, movieRepository}) {
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -23,7 +23,8 @@ function App({authService, naverSearch}) {
         <Route path='/main' exact>
           <Main
           authService={authService}
-          naverSearch={naverSearch}/>
+          naverSearch={naverSearch}
+          movieRepository={movieRepository}/>
         </Route>
       </Switch>
       </BrowserRouter>

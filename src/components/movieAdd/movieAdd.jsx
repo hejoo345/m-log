@@ -1,13 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {  useRef, useState } from 'react';
 import styles from './movieAdd.module.css';
 import {AiOutlineSearch} from 'react-icons/ai';
 import MovieSearchList from '../movie_search_list/movie_search_list';
+import DatePicker,{registerLocale} from 'react-datepicker';
+import ko from 'date-fns/locale/ko';
+registerLocale("ko",ko);
 
-const MovieAdd = ({naverSearch}) => {
+const MovieAdd = ({naverSearch, onMovieAdd}) => {
     const searchRef = useRef();
     const [searchList, setSearchList] = useState({});
     const [listActive, setListActive] = useState(false);
     const [movie, setMovie] = useState({});
+    const [date, setDate] = useState(new Date());
+    const [subtitle, setSubtitle] = useState('');
+
+    const titleRef = useRef();
+    const subTitleRef = useRef();
+    const actorRef = useRef();
+    const directorRef = useRef();
+    const comRef = useRef();
+    const imgRef = useRef();
+    const formRef = useRef();
 
     const searchMovie=(e)=>{
         e.preventDefault();
@@ -27,17 +40,42 @@ const MovieAdd = ({naverSearch}) => {
     const setMovieHandler=(movie)=>{
         console.log(movie);
         setMovie(movie);
+        setSubtitle(`${movie.subtitle}, ${movie.pubDate}`);
         setListActive(false);
         searchRef.current.value='';
     }
+    
+    const saveHandler=(e)=>{
+        e.preventDefault();
+        console.log('   저장합시다');
+
+        const newMovie = {
+            id: Date.now(),
+            title: titleRef.current.value || '',
+            subTitle: subTitleRef.current.value || '',
+            director: directorRef.current.value || '',
+            actor: actorRef.current.value || '',
+            date: date,
+            comment: comRef.current.value || '',
+            imgURL: imgRef.current.src || ''
+
+        }
+        // formRef.current.reset();
+        onMovieAdd(newMovie);
+    }
+
     return(
             <section className={styles.movieAddSection}>
                 <div className={styles.container}>
+                    <div className={styles.saveDiv}> 
+                        <button className={styles.save} onClick={saveHandler}>저장</button>
+                    </div>
                     <form className={styles.movieSearch} onSubmit={searchMovie}>
                         <input ref={searchRef} type="text" placeholder="감상한 영화를 검색"></input>
                         <AiOutlineSearch onClick={searchMovie} size="1.5rem"/>
                         
                     </form>
+
                     {
                         listActive &&(
                             <div className={styles.list}>
@@ -47,34 +85,52 @@ const MovieAdd = ({naverSearch}) => {
                             </div>
                         )
                     }
-                    <div className={styles.movie}>
+                    <form ref={formRef} className={styles.movie}>
                         <div className={styles.img}>
-                            <img alt="포스터" src={movie.image} width="100%" height="100%"></img>
+                            {
+                                movie.image && (
+                                    <img ref={imgRef}
+                                    alt="포스터" src={movie.image} width="100%" height="100%"></img>
+                                )
+                            }
                         </div>
                         <div className={styles.info}>
-                            <div>
-                                <div><span>제목</span></div>
-                                <input placeholder="제목(영어제목, 개봉일)" 
-                                value={movie.title && movie.title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")}></input>
+                            <div className={styles.infoDiv}>
+                                <div className={styles.infoTitle}><span>제목</span></div>
+                                <input ref={titleRef}
+                                className={styles.movieTitle}
+                                 defaultValue={movie.title && movie.title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")}></input>
                             </div>
-                            <div>
-                                <div><span>감독</span></div>
-                                <input value={movie.director}></input>
+                            <div className={styles.infoDiv}>
+                                <div className={styles.infoTitle}><span></span></div>
+                                <input ref={subTitleRef}
+                                defaultValue={subtitle}></input>
                             </div>
-                            <div>
-                                <div><span>배우</span></div>
-                                <input value={movie.actor}></input>
+                            <div className={styles.infoDiv}>
+                                <div className={styles.infoTitle}><span>감독</span></div>
+                                <input ref={directorRef}
+                                defaultValue={movie.director}></input>
                             </div>
-                            <div>
-                                <div><span>감상일</span></div>
-                                <input></input>
+                            <div className={styles.infoDiv}>
+                                <div className={styles.infoTitle}><span>배우</span></div>
+                                <input ref={actorRef}
+                                 defaultValue={movie.actor}></input>
                             </div>
-                            <div>
-                                <div className={styles.comment}><span>코멘트</span></div>
-                                <textarea></textarea>
+                            <div className={styles.infoDiv}>
+                                <div className={styles.infoTitle}><span>감상일</span></div>
+                                <DatePicker
+                                    selected={date}
+                                    onChange={date=>setDate(date)}
+                                    locale='ko'
+                                    dateFormat='yyyy-MM-dd'/>
+                                
+                            </div>
+                            <div className={styles.infoDiv}>
+                                <div className={styles.comment} className={styles.infoTitle}><span>코멘트</span></div>
+                                <textarea ref={comRef}></textarea>
                             </div>
                         </div>
-                    </div>
+                    </form>
 
                 </div>
                     
