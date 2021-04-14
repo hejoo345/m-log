@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
-const MovieList = (props) => {
+import React from 'react';
+import MovieItem from './movieItem';
+import styles from './movieList.module.css';
+
+const MovieList = ({movies}) => {
     return(
-    <>
-         <h2>영화 리스트</h2> 
-         </>  
+        <ul className={styles.container}>
+            {
+                Object.keys(movies).map(key=>(
+                    <MovieItem
+                    key={key}
+                    movie={movies[key]}/>
+                ))
+            }
+        </ul>
     )};
 
 export default MovieList;

@@ -4,24 +4,18 @@ import {AiOutlineSearch} from 'react-icons/ai';
 import {FaRegUserCircle} from 'react-icons/fa';
 import { useDetectOutsideClick } from './useDetectOutsideClick';
 
-const Navbar = memo(({onLogout,homeAndAddHandler}) => {
+const Navbar = memo(({onLogout,homeAndAddHandler,homeActive,addActive}) => {
 
     const dropdownRef = useRef(null);
     const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef,false);
-    const [homeActive, setHomeActive] = useState(true);
-    const [addActive, setAddActive] = useState(false);
 
     const userMenuHandler = () =>{
         setIsActive(!isActive);
     }
     const leftNavHandler = e =>{
         if(e.target.textContent === '홈'){
-            setHomeActive(true);
-            setAddActive(false);
             homeAndAddHandler('home');
         }else{
-            setHomeActive(false);
-            setAddActive(true);
             homeAndAddHandler('add');
         }
     }

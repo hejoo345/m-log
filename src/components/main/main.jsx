@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import MovieRepository from '../../service/movie_repository';
 import MovieAdd from '../movieAdd/movieAdd';
 import MovieList from '../movieList/movieList';
 import Navbar from '../navbar/navbar';
@@ -28,10 +29,32 @@ const Main = ({authService, naverSearch, movieRepository}) => {
         })
     },[authService,userId,history])
 
+
     useEffect(()=>{
-        if(userId) {console.log(userId);
-        }else return;
-    },[])
+        if(!userId) return;
+
+         movieRepository.syncMovies(userId,(movies)=>{
+            setMovies(movies);
+        });
+        // return ()=>stopSync();
+        
+    },[userId, movieRepository]);
+
+    const onMovieAdd = (movie)=>{
+        // console.log(movie);
+        setMovies((preMovies)=>{
+            const newMovies = {...preMovies};
+            newMovies[movie.id] = movie;
+            return newMovies;
+        });
+        movieRepository.saveMovie(userId, movie);
+        homeAndAddHandler('home');
+    }
+
+    // useEffect(()=>{
+    //     if(userId) {console.log(userId);
+    //     }else return;
+    // },[])
 
     const onLogout =()=>{
         if(!Kakao.Auth.getAccessToken()){ // 구글 로그인
@@ -45,7 +68,7 @@ const Main = ({authService, naverSearch, movieRepository}) => {
     }
 
     const homeAndAddHandler = (item) =>{
-        console.log(item);
+        // console.log(item);
         if(item === 'home'){
             setHomeActive(true);
             setAddActive(false);
@@ -55,23 +78,18 @@ const Main = ({authService, naverSearch, movieRepository}) => {
         }
     }
 
-    const onMovieAdd = (movie)=>{
-        console.log(movie);
-        setMovies((preMovies)=>{
-            const newMovies = {...preMovies};
-            newMovies[movie.id] = movie;
-            return newMovies;
-        });
-        movieRepository.saveMovie(userId, movies);
-    }
+   
     
     return(
         <section className={styles.mainSection}>
             <Navbar onLogout={onLogout} 
-            homeAndAddHandler={homeAndAddHandler}/>
+            homeAndAddHandler={homeAndAddHandler}
+            homeActive={homeActive}
+            addActive={addActive}/>
            {
                homeActive && (
-                    <MovieList 
+                    <MovieList
+                    movies={movies}
                     movieRepository={movieRepository}/>    
                )
            }

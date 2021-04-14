@@ -20,7 +20,10 @@ const MovieAdd = ({naverSearch, onMovieAdd}) => {
     const directorRef = useRef();
     const comRef = useRef();
     const imgRef = useRef();
-    const formRef = useRef();
+
+    const dateToString = (date)=>{
+        return date.getFullYear()+'-'+(date.getMonth()+1).toString().padStart(2,'0')+'-'+date.getDate().toString().padStart(2,'0');
+    }
 
     const searchMovie=(e)=>{
         e.preventDefault();
@@ -47,7 +50,6 @@ const MovieAdd = ({naverSearch, onMovieAdd}) => {
     
     const saveHandler=(e)=>{
         e.preventDefault();
-        console.log('   저장합시다');
 
         const newMovie = {
             id: Date.now(),
@@ -55,12 +57,11 @@ const MovieAdd = ({naverSearch, onMovieAdd}) => {
             subTitle: subTitleRef.current.value || '',
             director: directorRef.current.value || '',
             actor: actorRef.current.value || '',
-            date: date,
+            date: dateToString(date) || '',
             comment: comRef.current.value || '',
             imgURL: imgRef.current.src || ''
 
         }
-        // formRef.current.reset();
         onMovieAdd(newMovie);
     }
 
@@ -85,7 +86,7 @@ const MovieAdd = ({naverSearch, onMovieAdd}) => {
                             </div>
                         )
                     }
-                    <form ref={formRef} className={styles.movie}>
+                    <form className={styles.movie}>
                         <div className={styles.img}>
                             {
                                 movie.image && (
