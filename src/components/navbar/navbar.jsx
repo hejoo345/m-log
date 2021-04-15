@@ -4,10 +4,12 @@ import {AiOutlineSearch} from 'react-icons/ai';
 import {FaRegUserCircle} from 'react-icons/fa';
 import { useDetectOutsideClick } from './useDetectOutsideClick';
 
-const Navbar = memo(({onLogout,homeAndAddHandler,homeActive,addActive}) => {
+const Navbar = memo(({onLogout,homeAndAddHandler,homeActive,addActive,onSearchHandler}) => {
 
     const dropdownRef = useRef(null);
+    const inputRef = useRef();
     const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef,false);
+
 
     const userMenuHandler = () =>{
         setIsActive(!isActive);
@@ -19,6 +21,15 @@ const Navbar = memo(({onLogout,homeAndAddHandler,homeActive,addActive}) => {
             homeAndAddHandler('add');
         }
     }
+    const searchHandler=()=>{
+        onSearchHandler(inputRef.current.value);
+        inputRef.current.value = '';
+    }
+    const onKeyPress = e =>{
+        if(e.key === 'Enter'){
+            searchHandler();
+        }
+    }
     return(
             <section className={styles.nav}>
                 <ul className={styles.leftNav} onClick={leftNavHandler}>
@@ -28,7 +39,8 @@ const Navbar = memo(({onLogout,homeAndAddHandler,homeActive,addActive}) => {
                 <div className={styles.rightNav}>
                     <div className={styles.search}>
                         <AiOutlineSearch/>
-                        <input className={styles.searchInput} type='text' placeholder='검색'></input>
+                        <input ref={inputRef} className={styles.searchInput}
+                        type='text' placeholder='검색' onKeyPress={onKeyPress}></input>
                     </div>
                     <div className={styles.user} onClick={userMenuHandler} ref={dropdownRef}>
                         <FaRegUserCircle size="30"/>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import MovieRepository from '../../service/movie_repository';
 import MovieAdd from '../movieAdd/movieAdd';
 import MovieList from '../movieList/movieList';
 import Navbar from '../navbar/navbar';
@@ -78,14 +77,36 @@ const Main = ({authService, naverSearch, movieRepository}) => {
         }
     }
 
-   
+    const searchHandler = (item)=>{
+        // console.log(item);
+        const newMovies = {...movies};
+        const nct = 
+        Object.keys(newMovies).filter(key=>{
+            if(!newMovies[key].title.includes(item)) return;
+            return newMovies[key];
+        }
+        );
+
+        console.log(Object.assign({},nct));
+        
+    //     setMovies(premovies=>{
+    //         const newMovies = {...premovies};
+    //         Object.keys(newMovies)
+    //         .filter(key=>{
+    //             if(newMovies[key].title.includes(item))
+    //             return newMovies[key];
+    //         });
+    //         return newMovies;
+    //     });
+    }
     
     return(
         <section className={styles.mainSection}>
             <Navbar onLogout={onLogout} 
             homeAndAddHandler={homeAndAddHandler}
             homeActive={homeActive}
-            addActive={addActive}/>
+            addActive={addActive}
+            onSearchHandler={searchHandler}/>
            {
                homeActive && (
                     <MovieList

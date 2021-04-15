@@ -6,7 +6,7 @@ const MovieItem = ({movie}) => {
             <li className={styles.container}>
                 <div className={styles.movie}>
                     <div className={styles.info}>
-                        <p>{movie.title}</p>
+                        <p className={styles.title}>{movie.title}</p>
                         <p>{movie.date}</p>
                     </div>
                     <div className={styles.imgBox}>
