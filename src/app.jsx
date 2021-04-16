@@ -5,7 +5,7 @@ import Login from './components/login/login';
 import Main from './components/main/main';
 import Signup from './components/sign_up/sign_up';
 
-function App({authService, naverSearch, movieRepository}) {
+function App({authService, naverSearch, movieRepository, imgUpload}) {
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -24,7 +24,8 @@ function App({authService, naverSearch, movieRepository}) {
           <Main
           authService={authService}
           naverSearch={naverSearch}
-          movieRepository={movieRepository}/>
+          movieRepository={movieRepository}
+          imgUpload={imgUpload}/>
         </Route>
       </Switch>
       </BrowserRouter>

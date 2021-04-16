@@ -6,10 +6,12 @@ import AuthService from './service/auth_service';
 import NaverSearch from './service/naver_search';
 import 'react-datepicker/dist/react-datepicker.css';
 import MovieRepository from './service/movie_repository';
+import ImgUpload from './service/img_upload';
 
 const authService = new AuthService();
 const naverSearch = new NaverSearch();
 const movieRepository = new MovieRepository();
+const imgUpload = new ImgUpload();
 
 
 ReactDOM.render(
@@ -17,7 +19,8 @@ ReactDOM.render(
     <App
     authService={authService}
     naverSearch={naverSearch}
-    movieRepository={movieRepository}/>
+    movieRepository={movieRepository}
+    imgUpload={imgUpload}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

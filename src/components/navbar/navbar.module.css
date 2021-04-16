@@ -18,6 +18,7 @@
 }
 .leftNav li.active {
   color: black;
+  border-bottom: 3px solid #fecd52;
 }
 .home,
 .search {

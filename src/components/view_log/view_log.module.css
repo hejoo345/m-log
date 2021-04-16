@@ -1,0 +1,40 @@
+.container {
+  padding: 1em;
+}
+.title {
+  margin-bottom: 0.2em;
+}
+.subtitle {
+  margin-bottom: 1.2em;
+}
+.comment {
+  padding: 1em;
+  border-radius: 18px;
+  height: 10em;
+  border: 1px solid lightgray;
+}
+.edit {
+  padding: 1em;
+  display: flex;
+  justify-content: flex-end;
+}
+.editBtn {
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #f5b30d;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5em 1em;
+}
+.delBtn {
+  font-size: 1.1rem;
+  background-color: white;
+  border: 1px solid #f5b30d;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  margin-right: 1em;
+}

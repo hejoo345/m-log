@@ -4,7 +4,7 @@ import {AiOutlineSearch} from 'react-icons/ai';
 import {FaRegUserCircle} from 'react-icons/fa';
 import { useDetectOutsideClick } from './useDetectOutsideClick';
 
-const Navbar = memo(({onLogout,homeAndAddHandler,homeActive,addActive,onSearchHandler}) => {
+const Navbar = memo(({onLogout,homeAndAddHandler,homeActive,addActive,onSearchHandler,movieLength}) => {
 
     const dropdownRef = useRef(null);
     const inputRef = useRef();
@@ -45,6 +45,7 @@ const Navbar = memo(({onLogout,homeAndAddHandler,homeActive,addActive,onSearchHa
                     <div className={styles.user} onClick={userMenuHandler} ref={dropdownRef}>
                         <FaRegUserCircle size="30"/>
                         <ul className={`${styles.userOption} ${isActive? styles.active:styles.inactive} `}>
+                            <li>{`본 영화 ${movieLength}편`}</li>
                             <li onClick={onLogout}>로그아웃</li>
                         </ul>
                     </div>
