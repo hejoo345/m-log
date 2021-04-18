@@ -41,6 +41,11 @@
 }
 .user {
   cursor: pointer;
+  padding: 0.5em;
+  border-radius: 50%;
+}
+.user:hover {
+  background-color: lightgray;
 }
 .userOption {
   font-size: 1rem;

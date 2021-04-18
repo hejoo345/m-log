@@ -153,7 +153,7 @@ const MovieAdd = ({naverSearch, onMovieAdd, imgUpload, selectedMovie}) => {
                             <div className={styles.infoDiv}>
                                 <div className={styles.infoTitle}><span></span></div>
                                 <input ref={subTitleRef}
-                                defaultValue={subtitle} placeholder='(영어제목, 개봉일)'></input>
+                                defaultValue={subtitle.replace(/<b>/gi,"").replace(/<\/b>/gi,"")} placeholder='(영어제목, 개봉일)'></input>
                             </div>
                             <div className={styles.infoDiv}>
                                 <div className={styles.infoTitle}><span>감독</span></div>
