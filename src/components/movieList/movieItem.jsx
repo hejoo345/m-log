@@ -7,7 +7,7 @@ const MovieItem = ({movie, selectMovie}) => {
                 <div className={styles.movie}>
                     <div className={styles.info}>
                         <p className={styles.title}>{movie.title}</p>
-                        <p>{movie.date}</p>
+                        <p className={styles.date}>{movie.date}</p>
                         <p className={styles.comment}>{movie.comment}</p>
                     </div>
                     <div className={styles.imgBox}>

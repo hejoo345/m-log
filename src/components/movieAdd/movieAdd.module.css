@@ -46,7 +46,8 @@
 .info {
   display: flex;
   flex-direction: column;
-  flex-basis: 65%;
+  flex-basis: 55%;
+  margin-left: auto;
   width: 100%;
 }
 .info input {
@@ -78,11 +79,12 @@
 }
 .plusIcon {
   cursor: pointer;
+  margin-bottom: 0;
 }
 textarea {
   resize: vertical;
   width: 60%;
-  height: 15em;
+  height: 12em;
   font-size: 1.1rem;
 }
 .saveDiv {
@@ -121,10 +123,10 @@ textarea {
     flex-direction: column-reverse;
     align-items: center;
     width: 28em;
+    padding-left: 1em;
   }
   .img {
     width: 13em;
-    height: 20em;
     margin: 1em 0;
   }
 }

@@ -2,11 +2,11 @@ import axios from 'axios';
 class NaverSearch{
       
  
-      async movieSearch(search){
+      async movieSearch(search, display){
        const response = await axios.get('/v1/search/movie.json',{
           params:{
             query: search,
-            display: 5
+            display,
           },
           headers:{
             'X-Naver-Client-Id' : process.env.REACT_APP_CLIENT_ID,

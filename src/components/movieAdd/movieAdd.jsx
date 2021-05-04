@@ -14,11 +14,15 @@ const MovieAdd = ({naverSearch, onMovieAdd, imgUpload, selectedMovie}) => {
     const [listActive, setListActive] = useState(false);
 
     const [movie, setMovie] = useState({}); // 검색해서 나온 리스트 중 선택한 영화 담음
+    const [scroll, setScroll] = useState({
+        limit: 5,
+        offset: 1,
+    })
     const [date, setDate] = useState(new Date());
     const [subtitle, setSubtitle] = useState('');
     const [file, setFile] = useState();
     const [mvId, setmvId] = useState();
-
+    const [searchText , setSearchText]= useState();
 
     const titleRef = useRef();
     const subTitleRef = useRef();
@@ -50,15 +54,34 @@ const MovieAdd = ({naverSearch, onMovieAdd, imgUpload, selectedMovie}) => {
         e.preventDefault();
         if(searchRef.current.value==='') return;
 
-        naverSearch.movieSearch(searchRef.current.value)
-        .then((movies)=>{
+        setSearchText(searchRef.current.value);
+        setScroll(pre=>({
+            ...pre,
+            offset: 1,
+        })); 
+
+        naverSearch.movieSearch(searchRef.current.value, scroll.limit)
+        .then(movies=>{
             setSearchList(Object.assign({},movies) );
             setListActive(true);
-            // console.log(movies);
         })
-        .catch(console.log)
+    }
 
-        
+    const moreMovie = ()=>{  // scroll했을 때 영화 더 불러오기
+        setScroll(pre=>({
+            ...pre,
+            offset: pre.offset+1,
+        })); 
+
+        const len = scroll.limit*(scroll.offset+1);
+        naverSearch.movieSearch(searchText, len)
+        .then(movies=>{
+            const newM = Object.assign({},movies);
+            setSearchList(pre=>({
+                ...pre,
+                ...newM,
+            }))
+        });
     }
 
     const setMovieHandler=(movie)=>{
@@ -118,7 +141,8 @@ const MovieAdd = ({naverSearch, onMovieAdd, imgUpload, selectedMovie}) => {
                             <div className={styles.list}>
                                 <MovieSearchList
                                 searchList={searchList}
-                                setMovieHandler={setMovieHandler}/>
+                                setMovieHandler={setMovieHandler}
+                                moreMovie={moreMovie}/>
                             </div>
                         )
                     }
@@ -180,10 +204,7 @@ const MovieAdd = ({naverSearch, onMovieAdd, imgUpload, selectedMovie}) => {
                             </div>
                         </div>
                     </form>
-
                 </div>
-                    
-                    
             </section>
     )};
 
