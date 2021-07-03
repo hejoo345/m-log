@@ -40,7 +40,6 @@ const Main = ({authService, naverSearch, movieRepository, imgUpload}) => {
             setMovies(movies);
             setMovieLength(Object.keys(movies).length);
         });
-        // return ()=>stopSync();
         
     },[userId, movieRepository]);
 
