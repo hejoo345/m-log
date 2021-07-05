@@ -16,7 +16,6 @@
 - Naver 검색 API 
 - 카카오 로그인 API
 - Axios
-- Cloudinary
 
 ## Screen Shots
 <img width="500" alt="_2021-05-04__11 48 26" src="https://user-images.githubusercontent.com/67685741/117139888-b4f5f280-ade7-11eb-9cdb-e4af153384f0.png">
